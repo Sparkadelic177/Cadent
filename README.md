@@ -11,7 +11,7 @@ The app is going to prompt a CUNY student to enter 3 things
 3. Year
 
 The app is then going to generate a calender and add all of the schools important dates.
-- The beta will only work for QC students and then scale to service all CUNY students and then all students nation that have school calenders posted online 
+- The beta will only work for QC students and then scale to service all CUNY students and then all students nation wide that have school calenders posted online 
 
 ## Things to Do (MVP)
 - [ ] Create a Calender interface
