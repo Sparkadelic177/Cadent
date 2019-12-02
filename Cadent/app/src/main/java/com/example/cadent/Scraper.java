@@ -35,42 +35,35 @@ public class Scraper extends AsyncTask {
 
     //this method returns the school dates scraped in the web in a pdf
     //TODO:this method takes ina url of a pdf
-    String getSchoolDates() throws IOException {
-        String schoolDates;
+    String[][] getSchoolDates() throws IOException {
+        String schoolDates[][];
 
         System.out.println("Its inside the getPDFData method\n");
         //TODO: depending on what school the user goes to search that schools website
 
         url = new URL("https://www.qc.cuny.edu/Academics/SupportPrograms/advising/Documents/FALL%202019%20%20Important%20Academic%20Dates,%2003-19-19.pdf");
-
-//        //opening the connection
-//        HttpsURLConnection httpsConn = (HttpsURLConnection)url.openConnection();
-//
-//        //setting request method
-//        httpsConn.setRequestMethod("GET");
-//
-//        //getting the response back in a stream
-//        InputStream inputStream = httpsConn.getInputStream();
-//        InputStreamReader inputStreamReader = new InputStreamReader(inputStream);
-//        BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
-//        String line = bufferedReader.readLine();
-
-
         reader = new PdfReader(url.openStream());
 
         //getting the data from the first page
         String textFromPage = PdfTextExtractor.getTextFromPage(reader, 1);
 
-        //allocating memory
-//        schoolDates = new String[textFromPage.length()][];
+       // allocating memory
+        schoolDates = new String[textFromPage.length()][];
 
-        System.out.println("This is the text: " + textFromPage);
+        String lines[] = textFromPage.split("," );
+
+        //parsing the information to schoolDates array
+        for(int i = 0; i < lines.length-2; i++){
+            System.out.println(lines[i] + "\n");
+//            for(int j = i; j < i+2; j++){
+//                schoolDates[i][j] = lines[j]; //saving the data as [[text,date,year]...]
+//            }
+        }
 
         reader.close();
-//        httpsConn.disconnect();
-
-        return textFromPage;
+        return schoolDates;
     }
+
 
     @Override
     protected Object doInBackground(Object[] objects)  {
